@@ -1,0 +1,216 @@
+.login-container {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+
+  /* Centrando el contenedor */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.error {
+  color: red;
+  font-size: 0.9em;
+}
+
+button {
+  background-color: #69184A;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #570d3a;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #f4f4f4;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  gap: 10px; /* Espacio entre elementos */
+}
+
+.circle-btn {
+  background-color: #69184A;
+  color: white;
+  border: none;
+  border-radius: 70%;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  font-size: 20px;
+  flex-shrink: 0; /* Evita que se reduzca */
+}
+
+.search-bar {
+  margin-left: 50px; /* Espacio desde la izquierda */
+  margin-right: auto; /* Acomoda el resto de los elementos */
+  width: 700px; /* Ancho fijo */
+  padding: 5px 10px;
+  border: 10px solid #ccc;
+  border-radius: 10px;
+  font-size: 45px;
+}
+
+
+
+.new-participation-btn {
+  position: absolute;
+  top: 10px; /* Ajusta según lo necesario */
+  right: 90px; /* Mueve el botón más a la izquierda */
+  background-color: #69184A;
+  color: white;
+  border: none;
+  padding: 10px 10px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 45px;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+.modal-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 400px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.modal-buttons button {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.modal-buttons button:first-child {
+  background-color: #ccc;
+}
+
+.modal-buttons button:last-child {
+  background-color: #69184A;
+  color: white;
+}
+
+.posts-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 20px;
+}
+
+.post-it {
+  background-color: #fffbe6;
+  border: 1px solid #ffd700;
+  border-radius: 8px;
+  padding: 15px;
+  width: 200px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.post-it h3 {
+  margin: 0 0 10px;
+  font-size: 18px;
+  color: #69184A;
+}
+
+.post-it p {
+  margin: 0;
+  font-size: 14px;
+  color: #333;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+.modal-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 400px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.modal-buttons button {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.modal-buttons button:first-child {
+  background-color: #ccc;
+}
+
+.modal-buttons button:last-child {
+  background-color: #69184A;
+  color: white;
+}
+
+.create-account-link {
+  color: blue;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.create-account-link:hover {
+  color: darkblue;
+}
+
+
+
+main {
+  margin-top: 70px;
+  padding: 50px;
+}
