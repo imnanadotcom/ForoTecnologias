@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import apiRoutes from "./apiRoutes"; // Importa las rutas
 
 const Login = () => {
     const [username, setUsername] = useState("");
@@ -8,17 +10,40 @@ const Login = () => {
     const [error, setError] = useState("");
     const navigate = useNavigate();
 
-    const handleLogin = (e) => {
+    const handleLogin = async (e) => {
         e.preventDefault();
 
-        const validUsername = "admin";
-        const validPassword = "password123";
+        // Validar que los campos no estén vacíos
+        if (!username || !password) {
+            setError("Por favor, ingresa usuario y contraseña.");
+            return;
+        }
 
-        if (username === validUsername && password === validPassword) {
-            setError("");
-            navigate("/principal");
-        } else {
-            setError("Nombre de usuario o contraseña incorrectos");
+        try {
+            setError(""); // Limpiar errores previos
+
+            // Realizamos la solicitud POST a la API de login
+            const response = await axios.post(apiRoutes.login, {
+                username,
+                password,
+            }, {
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+
+            // Si la respuesta es exitosa, redirigimos al usuario a la página principal
+            if (response.status === 200) {
+                const token = response.data.token; // Este es el token recibido desde la API
+
+                localStorage.setItem('authToken', token);
+                console.log(token)
+                setError(""); // Limpiar cualquier error previo
+                navigate("/principal"); // Redirigir a la página principal
+            }
+        } catch (err) {
+            // Mostrar error si algo sale mal
+            setError(err.response?.data?.message || "Nombre de usuario o contraseña incorrectos");
         }
     };
 
@@ -49,7 +74,7 @@ const Login = () => {
                     Iniciar Sesión
                 </button>
                 <p className="signup-link">
-                    ¿No tienes cuenta? <a href="\signup">Regístrate</a>
+                    ¿No tienes cuenta? <a href="/signup">Regístrate</a>
                 </p>
             </form>
         </StyledWrapper>
@@ -57,13 +82,12 @@ const Login = () => {
 };
 
 const StyledWrapper = styled.div`
-    
     background-color: #f4f4f4;
     height: 100vh;
     display: flex;
     justify-content: center;
-    align-items: center; 
-    
+    align-items: center;
+
   .form {
     background-color: #fff;
     display: block;
@@ -78,7 +102,7 @@ const StyledWrapper = styled.div`
   }
 
     .form-title {
-        font-size: 50px; 
+        font-size: 50px;
         line-height:50px; 
         font-weight: bold;
         text-align: center;
@@ -89,11 +113,9 @@ const StyledWrapper = styled.div`
         
     }
 
-
     .input-container {
         margin-bottom: 12px;
     }
-
 
     .input-container input {
         width: 100%; 
@@ -107,17 +129,16 @@ const StyledWrapper = styled.div`
         top: 0px;
     }
 
-  .input-container input {
-    background-color: #fff;
-    padding: 1rem;
-    font-size: 40px;
-    line-height: 1.25rem;
-    width: 500px;
-    height: 100px;  
-    border-radius: 0.5rem;
-    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-      
-  }
+    .input-container input {
+        background-color: #fff;
+        padding: 1rem;
+        font-size: 40px;
+        line-height: 1.25rem;
+        width: 500px;
+        height: 100px;  
+        border-radius: 0.5rem;
+        box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    }
 
     .submit {
         margin-top: 1rem;
@@ -145,15 +166,15 @@ const StyledWrapper = styled.div`
         top: 40px;
     }
 
-  .signup-link a {
-    text-decoration: underline;
-  }
+    .signup-link a {
+        text-decoration: underline;
+    }
 
-  .error {
-    color: red;
-    font-size: 100px;
-    text-align: center;
-  }
+    .error {
+        color: red;
+        font-size: 100px;
+        text-align: center;
+    }
 `;
 
 export default Login;

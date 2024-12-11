@@ -5,6 +5,7 @@
     margin: 0px;
     justify-content: flex-start;
     align-content: flex-start;
+    padding: 20px;  /* Añadido para que el contenedor tenga espacio en los bordes */
 }
 
 .post {
@@ -16,17 +17,7 @@
     text-align: left;
     width: calc(33.333% - 20px); /* 3 posts per row with 20px gap */
     box-sizing: border-box;
-    position: relative;
-}
-
-.post:first-child {
-    position: absolute;
-    top: 250px;
-    left: 60px;
-}
-
-.posts-container .post:not(:first-child) {
-    position: relative; /* Start next to the previous post */
+    margin-bottom: 20px; /* Añadido para separar los posts en la fila */
 }
 
 .post h3 {
@@ -34,16 +25,12 @@
     font-weight: bold;
     color: #333;
     margin-bottom: 10px;
-    position: relative;
-    top: -20px;
 }
 
 .post p {
     font-size: 20px;
     color: #555;
     margin-bottom: 20px;
-    position: relative;
-    top: -20px;
 }
 
 .post-info {
@@ -119,9 +106,6 @@
     border-radius: 5px;
     width: 135px;
     height: 40px;
-    position: relative;
-    top: -71px;
-    left: 100px;
 }
 
 .btn-labelC:hover {

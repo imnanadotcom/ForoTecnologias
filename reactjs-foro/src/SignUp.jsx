@@ -1,17 +1,19 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import apiRoutes from "./apiRoutes"; // Importa las rutas
 import "./SignUp.css";
-
 
 const SignUp = () => {
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
-    const navigate = useNavigate();
+    const [success, setSuccess] = useState(""); // Para mostrar un mensaje de éxito
+    const navigate = useNavigate(); // Hook para redirección
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
         if (!username || !email || !password) {
@@ -19,9 +21,31 @@ const SignUp = () => {
             return;
         }
 
-        setError(""); // Clear any existing error
-        // Add your logic here for saving the profile changes
-        navigate("/principal");
+        try {
+            setError("");
+            setSuccess("");
+
+            // Llama a la API de registro
+            const response = await axios.post(apiRoutes.signUp, {
+                username,
+                email,
+                password,
+            }, {
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+
+            // Si el registro es exitoso, redirigimos al login
+            if (response.status === 201) {
+                setSuccess("Cuenta creada exitosamente");
+                // Redirige directamente al login
+                navigate("/login");
+            }
+
+        } catch (err) {
+            setError(err.response?.data?.message || "Error al crear la cuenta");
+        }
     };
 
     return (
@@ -29,6 +53,7 @@ const SignUp = () => {
             <form className="form" onSubmit={handleSubmit}>
                 <p className="form-title">Crear cuenta</p>
                 {error && <p className="error">{error}</p>}
+                {success && <p className="success">{success}</p>}
                 <div className="input-container">
                     <input
                         type="text"
@@ -65,15 +90,11 @@ const SignUp = () => {
 };
 
 const StyledWrapper = styled.div`
-    height: 100vh; /* Make the wrapper take the full viewport height */
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #f4f4f4; /* Add a background to the page */
-}
-
-
-
+    background-color: #f4f4f4;
 `;
 
 export default SignUp;
