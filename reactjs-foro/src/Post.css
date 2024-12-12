@@ -18,9 +18,27 @@
     0 4px 6px -2px rgba(0, 0, 0, 0.05);
   padding: 2rem;
   text-align: left;
-  width: calc(33.333% - 20px); /* 3 posts per row with 20px gap */
+  width: calc(100% - 20px); /* 3 33.333 posts per row with 20px gap */
   box-sizing: border-box;
   margin-bottom: 20px; /* Añadido para separar los posts en la fila */
+  overflow-wrap: break-word; 
+}
+
+
+/*  /* Rompe palabras largas 
+  word-wrap: break-word; /* Compatibilidad adicional 
+  word-break: break-word; /* Compatibilidad adicional 
+  overflow: hidden; /* Oculta contenido desbordado 
+  text-overflow: ellipsis; /* Muestra "..." si el contenido es demasiado largo 
+  max-height: 150px; /* Ajusta según lo necesario 
+  line-height: 1.5; /* Espaciado entre líneas 
+  display: -webkit-box; /* Requiere el siguiente estilo para limitar líneas 
+  -webkit-line-clamp: 6; /* Número máximo de líneas 
+  -webkit-box-orient: vertical; /* Necesario para -webkit-line-clamp 
+
+*/
+.liked {
+  color: red; /* O cualquier color que desees para cuando el like esté activado */
 }
 
 .post h3 {
@@ -119,7 +137,8 @@
 
 .buttons-container {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: flex-end; /* Alinea los botones a la derecha */
+  gap: 10px; /* Espacio entre los botones */
 }
 
 .btn-trash {
@@ -129,4 +148,39 @@
 
 .btn-trash:hover {
   background-color: darkred;
+}
+
+.comment-section {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end; /* Alinea los botones a la derecha */
+  width: 100%; /* La caja de texto ocupa todo el ancho del contenedor */
+}
+
+.comment-section textarea {
+  width: 100%; /* La caja de texto ocupa todo el espacio disponible */
+  height: 80px; /* Ajusta la altura del textarea */
+
+  padding: 10px;
+  margin-bottom: 10px; /* Espacio entre la caja de texto y los botones */
+  border-radius: 6px;
+  font-size: 16px; /* Aumenta el tamaño de la fuente */
+  border: 1px solid #ccc;
+  resize: vertical; /* Permite que el usuario ajuste la altura si lo desea */
+}
+
+
+.comment-section button {
+  margin-top: 5px; /* Espacio entre los botones */
+  padding: 10px 16px;
+  border: none;
+  background-color: #4f46e5; /* Color similar al del botón Like */
+  color: white;
+  cursor: pointer;
+  border-radius: 4px;
+  text-align: center; /* Asegura que el texto esté centrado */
+}
+
+.comment-section button:hover {
+  background-color: #3b3a94; /* Tonalidad más oscura cuando el botón es hover */
 }

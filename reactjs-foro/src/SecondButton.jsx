@@ -1,14 +1,13 @@
 import "./AddPostButton.css";
-const SecondButton = () => {
+
+const SecondButton = ({ funcioncita }) => {
   return (
-    <>
-      <div className="button-container">
-        <button className="Btn" >
-          Boton huerfano
-        </button>
-      </div>
-    </>
-  )
-}
+    <div className="button-container">
+      <button className="Btn" onClick={funcioncita}>
+        Generar post
+      </button>
+    </div>
+  );
+};
 
 export default SecondButton;
