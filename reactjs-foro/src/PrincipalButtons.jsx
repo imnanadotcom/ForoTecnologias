@@ -3,6 +3,7 @@ import Header from "./Header";
 import Post from "./Post";
 import AddPostButton from "./AddPostButton";
 import apiRoutes from "./apiRoutes";
+import SecondButton from "./SecondButton";
 
 const PrincipalButtons = () => {
     const [posts, setPosts] = useState([]);
@@ -145,7 +146,16 @@ const PrincipalButtons = () => {
     return (
         <>
             <Header />
-            <AddPostButton onAddPost={addPost} />
+            <div style={{
+                position: "absolute",
+                top: "5px",
+                left: "180px",
+                display: "flex",
+                gap: "25px"
+            }}>
+                <AddPostButton onAddPost={addPost} />
+                <SecondButton />
+            </div>
             <div className="posts-container">
                 {posts && posts.length > 0 ? (
                     posts.map((post, index) => (
