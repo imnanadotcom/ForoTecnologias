@@ -11,6 +11,8 @@ const PrincipalButtons = () => {
   const [newComment, setNewComment] = useState("");
   const [user] = useState({ username: "admin" });
   const [authToken] = useState(localStorage.getItem("authToken")); // Obtener token desde localStorage
+  const [updateFlag, setUpdateFlag] = useState(0); // Declaramos un estado que forzará el re-render
+
 
   // Función para cargar posts desde la API
   const fetchPosts = async () => {
@@ -115,50 +117,46 @@ const PrincipalButtons = () => {
     if (newComment.trim()) {
       const updatedPosts = [...posts];
       const postToUpdate = updatedPosts[commentingPostIndex];
-  
+    
       // Asegúrate de que el post tenga un arreglo de comentarios
-      if (!postToUpdate.comments) {
-        postToUpdate.comments = [];
-      }
-  
+      postToUpdate.comments = postToUpdate.comments || [];
+    
       const newCommentData = {
         content: newComment,
         username: user.username,
         datetime: new Date().toLocaleString(),
       };
-  
-      // Añadir comentario al estado local
+    
       postToUpdate.comments.push(newCommentData);
-      setPosts(updatedPosts);
+      setPosts(updatedPosts); // Actualizar el estado global de posts
       setNewComment("");
       setCommentingPostIndex(null);
-  
-      // Enviar el nuevo comentario a la API
+    
       try {
         const response = await fetch(apiRoutes.publishComment, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `${authToken}`, // Asegúrate de que el token esté bien formateado
+            Authorization: `${authToken}`,
           },
           body: JSON.stringify({
-            id_post: postToUpdate.id_post, // Asegúrate de que el ID del post esté disponible
-            content: newComment, // Debe coincidir con lo que espera el backend
+            id_post: postToUpdate.id_post,
+            content: newComment,
           }),
         });
-  
+    
         const data = await response.json();
-        console.log("Respuesta del servidor:", data);
-        
-        if (response.ok) {
-          console.log("Comentario publicado con éxito");
-        } else {
+        if (!response.ok) {
           console.error("Error al publicar el comentario:", data.message);
           alert("Error al publicar el comentario.");
+        } else {
+          // Aquí forzamos un re-render con el estado updateFlag
+          setUpdateFlag(prev => prev + 1);  // Esto hará que el componente se vuelva a renderizar
         }
+      
+
       } catch (error) {
         console.error("Error al intentar publicar el comentario:", error);
-        alert("Error en la conexión a la API.");
       }
     } else {
       alert("Por favor escribe un comentario.");
@@ -218,7 +216,8 @@ const PrincipalButtons = () => {
         <AddPostButton onAddPost={addPost} />
         <SecondButton funcioncita={generatePost} />
       </div>
-      <div className="posts-container">
+      <div className="posts-container"
+      >
         {posts && posts.length > 0 ? (
           posts.map((post, index) => (
             <Post

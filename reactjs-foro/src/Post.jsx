@@ -4,7 +4,6 @@ import "./Post.css";
 
 const Post = ({
   post,
-  comments,
   onLike,
   onComment,
   isCommenting,
@@ -17,8 +16,31 @@ const Post = ({
 }) => {
   const [likes, setLikes] = useState(post.likes || 0);
   const [isLiked, setIsLiked] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(false); // Nuevo estado para controlar la expansión
+  const [comments, setComments] = useState([]); // Nuevo estado para los comentarios
 
   // Función para verificar si el post ya está "likeado" por el usuario actual
+  const getComments = async () => {
+    try {
+      const response = await fetch(
+        `${apiRoutes.commentsByPost}?id_post=${post.id_post}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `${localStorage.getItem("authToken")}`,
+          },
+        }
+      );
+      const data = await response.json();
+      if (data.success) {
+        setComments(data.comment_details); // Guarda los comentarios en el estado
+      }
+    } catch (error) {
+      console.error("Error getting comments:", error);
+    }
+  };
+
   const checkIfLiked = async () => {
     try {
       const response = await fetch(
@@ -44,6 +66,10 @@ const Post = ({
   useEffect(() => {
     checkIfLiked();
   }, [post.id_post, currentUserId]);
+  
+  useEffect(() => {
+    getComments();
+  }, [post.id_post]);
 
   const handleLike = async () => {
     if (isLiked) {
@@ -120,10 +146,18 @@ const Post = ({
     getLikes();
   }, [post.id_post]);
 
+  // Obtener el contenido truncado y mostrar más/menos
+  const truncatedContent = post.content.length > 300 ? post.content.substring(0, 300) + "..." : post.content;
+
   return (
     <div className="post">
       <h3 dangerouslySetInnerHTML={{ __html: post.title }} />
-      <p dangerouslySetInnerHTML={{ __html: post.content }} />
+      <p dangerouslySetInnerHTML={{ __html: isExpanded ? post.content : truncatedContent }} />
+      {post.content.length > 300 && (
+        <button className="read-more-toggle" onClick={() => setIsExpanded(!isExpanded)}>
+          {isExpanded ? "Leer menos" : "Leer más"}
+        </button>
+      )}
       <div className="post-info">
         <span>{post.author}</span>
         <span>{post.created_at}</span>
@@ -186,11 +220,11 @@ const Post = ({
           <button onClick={onCancelComment}>Cancelar</button>
         </div>
       )}
-      <div className="comments">
+      <div className="comments" style={{ maxHeight: "200px", overflowY: "scroll" }}>
         {comments && comments.length > 0 ? (
           comments.map((comment, idx) => (
             <div key={idx} className="comment">
-              <p>{comment.content}</p>
+              <p dangerouslySetInnerHTML={{ __html: comment.content }} />
               <span>{comment.author}</span>
               <span>{comment.created_at}</span>
             </div>

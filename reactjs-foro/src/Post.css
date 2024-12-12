@@ -1,27 +1,86 @@
 .posts-container {
   display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  margin: 0px;
-  margin-top: 35px;
-  justify-content: flex-start;
-  align-content: flex-start;
-  padding: 20px; /* Añadido para que el contenedor tenga espacio en los bordes */
+  flex-direction: column;
+  align-items: center; /* Centrar los posts dentro del contenedor */
+  padding: 90px;
+}
+.comments {
+  max-height: 300px;  /* Altura máxima para el contenedor de comentarios */
+  overflow-y: auto;   /* Activar el scroll cuando los comentarios excedan la altura */
+  margin-top: 10px;
+}
+
+.comments-container {
+  padding: 10px;
+}
+
+.comment {
+  background-color: #f9f9f9;
+  padding: 10px;
+  margin-bottom: 5px;
+  border-radius: 5px;
+}
+
+.comment p {
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+.comment span {
+  font-size: 12px;
+  color: #888;
+  margin-right: 10px;
+}
+
+.comment span:first-child {
+  font-weight: bold;
+}
+
+.comment-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centra el contenido horizontalmente */
+  justify-content: center; /* Centra el contenido verticalmente */
+  padding: 10px;
+}
+
+textarea {
+  margin-bottom: 10px;
+  padding: 10px;
+  resize: none;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  width: 80%; /* Puedes ajustar el ancho según tus necesidades */
+}
+
+
+button {
+  padding: 5px 10px;
+  margin-top: 5px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+}
+
+button:hover {
+  background-color: #45a049;
 }
 
 .post {
-  position: relative;
   background-color: #fff;
-  border: 1px solid #e5e7eb;
-  border-radius: 25px;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
-    0 4px 6px -2px rgba(0, 0, 0, 0.05);
-  padding: 2rem;
-  text-align: left;
-  width: calc(100% - 20px); /* 3 33.333 posts per row with 20px gap */
-  box-sizing: border-box;
-  margin-bottom: 20px; /* Añadido para separar los posts en la fila */
-  overflow-wrap: break-word; 
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin-bottom: 20px;  /* Añadir espacio entre los posts */
+  padding: 15px;        /* Añadir espacio dentro de cada post */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  max-width: 1000px;     /* Limitar el ancho de los posts a 700px para hacerlo más delgado */
+  width: 100%;          /* Asegurarse de que los posts ocupen el ancho disponible hasta el límite */
+  margin-left: auto;
+  margin-right: auto;   /* Centrar los posts en la página */
+  overflow: hidden;  /* Evita que el contenido se desborde */
+  word-wrap: break-word;  /* Rompe las palabras largas */
+  word-break: break-word;
 }
 
 
@@ -90,7 +149,7 @@
 }
 
 .btn-label:hover {
-  background-color: #004a33;
+  background-color: #ffc107  ;
   transform: translateY(-2px);
 }
 
@@ -183,4 +242,70 @@
 
 .comment-section button:hover {
   background-color: #3b3a94; /* Tonalidad más oscura cuando el botón es hover */
+}
+
+
+.post-title {
+  font-size: 1.2rem;
+  margin-bottom: 5px;
+}
+
+.post-content {
+  font-size: 0.9rem;
+  color: #333;
+}
+
+.toggle-content {
+  font-size: 0.8rem;
+  color: #007bff;
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-top: 5px;
+}
+
+.buttons-container {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+/* Asegura que las imágenes en post.content sean responsivas y no excedan el tamaño del contenedor */
+.post p img {
+  max-width: 50%; /* Limita el ancho al 100% del contenedor */
+  height: auto;    /* Mantiene la proporción de la imagen */
+  display: block;  /* Evita que las imágenes se comporten como inline elements */
+  margin: 0 auto;  /* Centra la imagen en el contenedor */
+}
+
+.read-more-toggle {
+  font-style: italic;
+  color: #007BFF;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-decoration: underline;
+  margin-top: 10px;
+}
+
+.read-more-toggle:hover {
+  color: #0056b3;
+  text-decoration: none;
+}
+
+.post p {
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.liked {
+  color: #ffffff; /* Puedes cambiarlo a cualquier color que prefieras */
+}
+
+.btn-label.liked {
+  background-color: #ff6347 ; /* Puedes darle un fondo de color cuando sea 'likeado' */
+}
+
+.svgs.liked {
+  fill: white; /* Puedes cambiar el color del ícono si lo prefieres */
 }
