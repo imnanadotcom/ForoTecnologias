@@ -36,6 +36,27 @@
   font-weight: bold;
 }
 
+
+.comment {
+  display: flex;
+  justify-content: space-between; /* Esto coloca el contenido del comentario y el botón en extremos opuestos */
+  align-items: center; /* Alinea verticalmente el contenido */
+}
+
+.btn-delete-comment {
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.btn-delete-comment:hover {
+  background-color: darkred;
+}
+
+
+
 .comment-section {
   display: flex;
   flex-direction: column;

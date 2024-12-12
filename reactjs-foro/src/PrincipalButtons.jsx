@@ -11,7 +11,6 @@ const PrincipalButtons = () => {
   const [newComment, setNewComment] = useState("");
   const [user] = useState({ username: "admin" });
   const [authToken] = useState(localStorage.getItem("authToken")); // Obtener token desde localStorage
-  const [updateFlag, setUpdateFlag] = useState(0); // Declaramos un estado que forzará el re-render
 
 
   // Función para cargar posts desde la API
@@ -149,11 +148,7 @@ const PrincipalButtons = () => {
         if (!response.ok) {
           console.error("Error al publicar el comentario:", data.message);
           alert("Error al publicar el comentario.");
-        } else {
-          // Aquí forzamos un re-render con el estado updateFlag
-          setUpdateFlag(prev => prev + 1);  // Esto hará que el componente se vuelva a renderizar
-        }
-      
+        } 
 
       } catch (error) {
         console.error("Error al intentar publicar el comentario:", error);

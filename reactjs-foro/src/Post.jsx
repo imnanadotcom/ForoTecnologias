@@ -19,7 +19,39 @@ const Post = ({
   const [isExpanded, setIsExpanded] = useState(false); // Nuevo estado para controlar la expansión
   const [comments, setComments] = useState([]); // Nuevo estado para los comentarios
 
+
+  
   // Función para verificar si el post ya está "likeado" por el usuario actual
+  const handleDeleteComment = async (comment) => {
+    const confirmDelete = window.confirm(
+      "¿Estás seguro de que deseas eliminar este comentario?"
+    );
+    if (confirmDelete) {
+      try {
+        const response = await fetch(apiRoutes.deleteComment, {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `${localStorage.getItem("authToken")}`,
+          },
+          body: JSON.stringify({
+            id_comment: comment.id_comment,
+          }),
+        });
+  
+        const data = await response.json();
+        if (response.ok) {
+          alert("Comentario eliminado");
+          setComments(comments.filter((c) => c.id_comment !== comment.id_comment));
+        } else {
+          alert("Error al eliminar el comentario.");
+        }
+      } catch (error) {
+        console.error("Error al eliminar el comentario", error);
+      }
+    }
+  };
+  
   const getComments = async () => {
     try {
       const response = await fetch(
@@ -220,21 +252,32 @@ const Post = ({
           <button onClick={onCancelComment}>Cancelar</button>
         </div>
       )}
-      <div className="comments" style={{ maxHeight: "200px", overflowY: "scroll" }}>
-        {comments && comments.length > 0 ? (
-          comments.map((comment, idx) => (
-            <div key={idx} className="comment">
-              <p dangerouslySetInnerHTML={{ __html: comment.content }} />
-              <span>{comment.author}</span>
-              <span>{comment.created_at}</span>
-            </div>
-          ))
-        ) : (
-          <p>No hay comentarios aún.</p>
+<div className="comments" style={{ maxHeight: "200px", overflowY: "scroll" }}>
+  {comments && comments.length > 0 ? (
+    comments.map((comment, idx) => (
+      <div key={idx} className="comment">
+        <p dangerouslySetInnerHTML={{ __html: comment.content }} />
+        <span>{comment.username}</span>
+        {comment.username === currentUserId && (
+          <button
+            className="btn-delete-comment"
+            onClick={() => handleDeleteComment(comment)}
+          >
+            Eliminar
+          </button>
         )}
       </div>
+    ))
+  ) : (
+    <p>No comments yet.</p>
+  )}
+</div>
+
     </div>
   );
 };
 
 export default Post;
+
+
+
