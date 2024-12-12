@@ -3,6 +3,7 @@ import Header from "./Header";
 import Post from "./Post";
 import AddPostButton from "./AddPostButton";
 import apiRoutes from "./apiRoutes";
+import SecondButton from "./SecondButton";
 
 const PrincipalButtons = () => {
     const [posts, setPosts] = useState([]);
@@ -22,11 +23,11 @@ const PrincipalButtons = () => {
                     Authorization: `${authToken}`,
                 },
             });
-    
+
             // Imprimir la respuesta como texto primero
             const responseText = await response.text();
             console.log("Respuesta del servidor:", responseText);
-    
+
             // Verificar si la respuesta es JSON
             const contentType = response.headers.get("Content-Type");
             if (contentType && contentType.includes("application/json")) {
@@ -40,12 +41,12 @@ const PrincipalButtons = () => {
             console.error("Error al cargar los posts:", error);
         }
     };
-    
-    
+
+
 
     // Llama a fetchPosts al montar el componente
     useEffect(() => {
-        fetchPosts();
+        fetchPosts().then();
     }, []);
 
     const addPost = async (post) => {
@@ -74,7 +75,7 @@ const PrincipalButtons = () => {
             console.log("API Response: ", data);
 
             if (response.ok) {
-                setPosts([...posts, postWithUser]);
+                await fetchPosts();
             } else {
                 alert(`Error al publicar el post: ${data.message}`);
             }
@@ -113,10 +114,48 @@ const PrincipalButtons = () => {
         setPosts(updatedPosts);
     };
 
+    const deletePost = async (post) => {
+        console.log(post)
+        try {
+            const response = await fetch(apiRoutes.deletePost, {
+                method: "DELETE",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `${authToken}`,
+                },
+                body: JSON.stringify({
+                    id_post: post.id_post,
+                    id_user: post.id_user,
+                    id_role: "admin",
+                }),
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.message || "Error al eliminar el post");
+            }
+
+            const result = await response.json();
+            console.log("Post eliminado:", result);
+            await fetchPosts();
+        } catch (error) {
+            console.error("Error al eliminar el post:", error);
+        }
+    }
+
     return (
-        <div>
+        <>
             <Header />
-            <AddPostButton onAddPost={addPost} />
+            <div style={{
+                position: "absolute",
+                top: "5px",
+                left: "180px",
+                display: "flex",
+                gap: "25px"
+            }}>
+                <AddPostButton onAddPost={addPost} />
+                <SecondButton />
+            </div>
             <div className="posts-container">
                 {posts && posts.length > 0 ? (
                     posts.map((post, index) => (
@@ -130,13 +169,14 @@ const PrincipalButtons = () => {
                             onCommentChange={(e) => setNewComment(e.target.value)}
                             onPublishComment={publishComment}
                             onCancelComment={cancelComment}
+                            onDeletePost={async () => { await deletePost(post) }}
                         />
                     ))
                 ) : (
                     <p>No posts available</p>
                 )}
             </div>
-        </div>
+        </>
     );
 };
 

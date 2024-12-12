@@ -1,50 +1,46 @@
 .Btn {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    width: 400px;
-    height: 110px;
-    border: none;
-    background-color: #CE796B;
-    color: white;
-    font-weight: 500;
-    cursor: pointer;
-    border-radius: 10px;
-    transition-duration: 0.3s;
-    align-self: center;
-    font-size: 51px;
-    padding: 5px 60px;
-    position: absolute;
-    top: 50px;
-    left: 250px;
-
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 400px;
+  height: 110px;
+  border: none;
+  background-color: #ce796b;
+  color: white;
+  font-weight: 500;
+  cursor: pointer;
+  border-radius: 10px;
+  transition-duration: 0.3s;
+  align-self: center;
+  font-size: 51px;
+  padding: 5px 60px;
 }
 
 .svg {
-    width:50px;
-    margin-left: 50px;
-    fill: white;
-    transition-duration: 0.3s;
+  width: 50px;
+  margin-left: 50px;
+  fill: white;
+  transition-duration: 0.3s;
 }
 
 .Btn:hover {
-    color: transparent;
+  color: transparent;
 }
 
 .Btn:hover svg {
-    transform: translateX(-20%);
-    transition-duration: 0.3s;
+  transform: translateX(-20%);
+  transition-duration: 0.3s;
 }
 
 .Btn:active {
-    transform: translate(3px , 3px);
-    transition-duration: .3s;
-    box-shadow: 2px 2px 0px rgb(140, 32, 212);
+  transform: translate(3px, 3px);
+  transition-duration: 0.3s;
+  box-shadow: 2px 2px 0px rgb(140, 32, 212);
 }
 
 .button-container {
-    display: flex;
-    align-items: center;
-    gap: 50px; /* Adjust this value to increase or decrease the space */
-    margin: 20px;
+  display: flex;
+  align-items: center;
+  gap: 50px; /* Adjust this value to increase or decrease the space */
+  margin: 20px;
 }

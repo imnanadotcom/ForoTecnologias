@@ -15,7 +15,7 @@ const Header = () => {
     };
 
     return (
-        <div className="header">
+        <header className="header">
             <label className="popup">
                 <input type="checkbox" />
                 <div tabIndex={0} className="burger">
@@ -39,7 +39,7 @@ const Header = () => {
                     </div>
                 </nav>
             </label>
-        </div>
+        </header>
     );
 };
 
