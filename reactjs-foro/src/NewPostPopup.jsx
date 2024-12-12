@@ -16,7 +16,7 @@ const NewPostPopup = ({ isVisible, onClose, onChange, onSubmit, post }) =>
                 />
                 <textarea
                     placeholder="Texto"
-                    name="text"
+                    name="content" //Se cambio de text a content
                     value={post.text}
                     onChange={onChange}
                 />
