@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import apiRoutes from "./apiRoutes"; // Importa las rutas
+import apiRoutes from "./apiRoutes"; 
 import "./SignUp.css";
 
 const SignUp = () => {
@@ -10,8 +10,8 @@ const SignUp = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
-    const [success, setSuccess] = useState(""); // Para mostrar un mensaje de éxito
-    const navigate = useNavigate(); // Hook para redirección
+    const [success, setSuccess] = useState(""); 
+    const navigate = useNavigate(); 
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -25,7 +25,7 @@ const SignUp = () => {
             setError("");
             setSuccess("");
 
-            // Llama a la API de registro
+            
             const response = await axios.post(apiRoutes.signUp, {
                 username,
                 email,
@@ -36,7 +36,7 @@ const SignUp = () => {
                 },
             });
 
-            // Si el registro es exitoso, redirigimos al login
+           
             if (response.status === 201) {
                 setSuccess("Cuenta creada exitosamente");
                 // Redirige directamente al login

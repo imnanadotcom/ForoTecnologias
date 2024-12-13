@@ -16,12 +16,12 @@ const Post = ({
 }) => {
   const [likes, setLikes] = useState(post.likes || 0);
   const [isLiked, setIsLiked] = useState(false);
-  const [isExpanded, setIsExpanded] = useState(false); // Nuevo estado para controlar la expansión
-  const [comments, setComments] = useState([]); // Nuevo estado para los comentarios
-  const [editingCommentId, setEditingCommentId] = useState(null); // Estado para manejar la edición de comentarios
-  const [editedCommentText, setEditedCommentText] = useState(""); // Estado para almacenar el texto editado
+  const [isExpanded, setIsExpanded] = useState(false); 
+  const [comments, setComments] = useState([]); 
+  const [editingCommentId, setEditingCommentId] = useState(null); 
+  const [editedCommentText, setEditedCommentText] = useState(""); 
 
-  // Función para verificar si el post ya está "likeado" por el usuario actual
+
   const handleDeleteComment = async (comment) => {
     const confirmDelete = window.confirm(
       "¿Estás seguro de que deseas eliminar este comentario?"
@@ -66,7 +66,7 @@ const Post = ({
       );
       const data = await response.json();
       if (data.success) {
-        setComments(data.comment_details); // Guarda los comentarios en el estado
+        setComments(data.comment_details); 
       }
     } catch (error) {
       console.error("Error getting comments:", error);
@@ -87,7 +87,7 @@ const Post = ({
       );
       const data = await response.json();
       if (data.success) {
-        setIsLiked(data.isLiked); // El API retorna un campo isLiked
+        setIsLiked(data.isLiked); 
       }
     } catch (error) {
       console.error("Error checking if post is liked:", error);

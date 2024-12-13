@@ -117,7 +117,7 @@ const PrincipalButtons = () => {
       const updatedPosts = [...posts];
       const postToUpdate = updatedPosts[commentingPostIndex];
     
-      // Asegúrate de que el post tenga un arreglo de comentarios
+      
       postToUpdate.comments = postToUpdate.comments || [];
     
       const newCommentData = {
@@ -127,7 +127,7 @@ const PrincipalButtons = () => {
       };
     
       postToUpdate.comments.push(newCommentData);
-      setPosts(updatedPosts); // Actualizar el estado global de posts
+      setPosts(updatedPosts); 
       setNewComment("");
       setCommentingPostIndex(null);
     

@@ -1,4 +1,4 @@
-// NewPostPopup.jsx
+
 import React from "react";
 import "./NewPostPopup.css";
 
@@ -16,7 +16,7 @@ const NewPostPopup = ({ isVisible, onClose, onChange, onSubmit, post }) =>
                 />
                 <textarea
                     placeholder="Texto"
-                    name="content" //Se cambio de text a content
+                    name="content" 
                     value={post.text}
                     onChange={onChange}
                 />
