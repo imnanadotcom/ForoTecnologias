@@ -1,12 +1,12 @@
 .posts-container {
   display: flex;
   flex-direction: column;
-  align-items: center; /* Centrar los posts dentro del contenedor */
+  align-items: center; 
   padding: 90px;
 }
 .comments {
-  max-height: 300px;  /* Altura máxima para el contenedor de comentarios */
-  overflow-y: auto;   /* Activar el scroll cuando los comentarios excedan la altura */
+  max-height: 300px;  
+  overflow-y: auto;   
   margin-top: 10px;
 }
 
@@ -26,13 +26,13 @@
   margin-bottom: 5px;
 }
 
-/* Contenedor para los botones eliminar y editar */
+
 .delete-edit-container {
   display: flex;
   gap: 10px;
 }
 
-/* Estilo para el botón de eliminar (color rojo) */
+
 .btn-trash {
   background-color: #f44336;
   color: white;
@@ -47,7 +47,7 @@
   background-color: #d32f2f;
 }
 
-/* Estilo para el botón de editar (color verde) */
+
 .btn-edit {
   background-color: #4caf50;
   color: white;
@@ -75,8 +75,8 @@
 
 .comment {
   display: flex;
-  justify-content: space-between; /* Esto coloca el contenido del comentario y el botón en extremos opuestos */
-  align-items: center; /* Alinea verticalmente el contenido */
+  justify-content: space-between; 
+  align-items: center; 
 }
 
 .btn-delete-comment {
@@ -96,8 +96,8 @@
 .comment-section {
   display: flex;
   flex-direction: column;
-  align-items: center; /* Centra el contenido horizontalmente */
-  justify-content: center; /* Centra el contenido verticalmente */
+  align-items: center; 
+  justify-content: center; 
   padding: 10px;
 }
 
@@ -107,7 +107,7 @@ textarea {
   resize: none;
   border: 1px solid #ddd;
   border-radius: 5px;
-  width: 80%; /* Puedes ajustar el ancho según tus necesidades */
+  width: 80%; 
 }
 
 
@@ -128,33 +128,23 @@ button:hover {
   background-color: #fff;
   border: 1px solid #ddd;
   border-radius: 8px;
-  margin-bottom: 20px;  /* Añadir espacio entre los posts */
-  padding: 15px;        /* Añadir espacio dentro de cada post */
+  margin-bottom: 20px;  
+  padding: 15px;        
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  max-width: 1000px;     /* Limitar el ancho de los posts a 700px para hacerlo más delgado */
-  width: 100%;          /* Asegurarse de que los posts ocupen el ancho disponible hasta el límite */
+  max-width: 1000px;     
+  width: 100%;          
   margin-left: auto;
-  margin-right: auto;   /* Centrar los posts en la página */
-  overflow: hidden;  /* Evita que el contenido se desborde */
-  word-wrap: break-word;  /* Rompe las palabras largas */
+  margin-right: auto;   
+  overflow: hidden;  
+  word-wrap: break-word;  
   word-break: break-word;
 }
 
 
-/*  /* Rompe palabras largas 
-  word-wrap: break-word; /* Compatibilidad adicional 
-  word-break: break-word; /* Compatibilidad adicional 
-  overflow: hidden; /* Oculta contenido desbordado 
-  text-overflow: ellipsis; /* Muestra "..." si el contenido es demasiado largo 
-  max-height: 150px; /* Ajusta según lo necesario 
-  line-height: 1.5; /* Espaciado entre líneas 
-  display: -webkit-box; /* Requiere el siguiente estilo para limitar líneas 
-  -webkit-line-clamp: 6; /* Número máximo de líneas 
-  -webkit-box-orient: vertical; /* Necesario para -webkit-line-clamp 
 
 */
 .liked {
-  color: red; /* O cualquier color que desees para cuando el like esté activado */
+  color: red; 
 }
 
 .post h3 {
@@ -253,8 +243,8 @@ button:hover {
 
 .buttons-container {
   display: flex;
-  justify-content: flex-end; /* Alinea los botones a la derecha */
-  gap: 10px; /* Espacio entre los botones */
+  justify-content: flex-end; 
+  gap: 10px; 
 }
 
 .btn-trash {
@@ -269,36 +259,36 @@ button:hover {
 .comment-section {
   display: flex;
   flex-direction: column;
-  align-items: flex-end; /* Alinea los botones a la derecha */
-  width: 100%; /* La caja de texto ocupa todo el ancho del contenedor */
+  align-items: flex-end; 
+  width: 100%; 
 }
 
 .comment-section textarea {
-  width: 100%; /* La caja de texto ocupa todo el espacio disponible */
-  height: 80px; /* Ajusta la altura del textarea */
+  width: 100%; 
+  height: 80px; 
 
   padding: 10px;
-  margin-bottom: 10px; /* Espacio entre la caja de texto y los botones */
+  margin-bottom: 10px; 
   border-radius: 6px;
-  font-size: 16px; /* Aumenta el tamaño de la fuente */
+  font-size: 16px; 
   border: 1px solid #ccc;
-  resize: vertical; /* Permite que el usuario ajuste la altura si lo desea */
+  resize: vertical; 
 }
 
 
 .comment-section button {
-  margin-top: 5px; /* Espacio entre los botones */
+  margin-top: 5px; 
   padding: 10px 16px;
   border: none;
-  background-color: #4f46e5; /* Color similar al del botón Like */
+  background-color: #4f46e5; 
   color: white;
   cursor: pointer;
   border-radius: 4px;
-  text-align: center; /* Asegura que el texto esté centrado */
+  text-align: center; 
 }
 
 .comment-section button:hover {
-  background-color: #3b3a94; /* Tonalidad más oscura cuando el botón es hover */
+  background-color: #3b3a94; 
 }
 
 
@@ -327,12 +317,12 @@ button:hover {
   margin-top: 10px;
 }
 
-/* Asegura que las imágenes en post.content sean responsivas y no excedan el tamaño del contenedor */
+
 .post p img {
-  max-width: 50%; /* Limita el ancho al 100% del contenedor */
-  height: auto;    /* Mantiene la proporción de la imagen */
-  display: block;  /* Evita que las imágenes se comporten como inline elements */
-  margin: 0 auto;  /* Centra la imagen en el contenedor */
+  max-width: 50%; 
+  height: auto;    
+  display: block;  
+  margin: 0 auto;  
 }
 
 .read-more-toggle {
@@ -356,25 +346,25 @@ button:hover {
 }
 
 .liked {
-  color: #ffffff; /* Puedes cambiarlo a cualquier color que prefieras */
+  color: #ffffff; 
 }
 
 .btn-label.liked {
-  background-color: #ff6347 ; /* Puedes darle un fondo de color cuando sea 'likeado' */
+  background-color: #ff6347 ; 
 }
 
 .svgs.liked {
-  fill: white; /* Puedes cambiar el color del ícono si lo prefieres */
+  fill: white; 
 }
 
 
-/* Contenedor de botones eliminar y editar en los comentarios */
+
 .comment-actions {
   display: flex;
   gap: 10px;
 }
 
-/* Estilo para el botón de eliminar comentario (rojo) */
+
 .btn-delete-comment {
   background-color: #f44336;
   color: white;
@@ -389,7 +379,7 @@ button:hover {
   background-color: #d32f2f;
 }
 
-/* Estilo para el botón de editar comentario (verde) */
+
 .btn-edit-comment {
   background-color: #4caf50;
   color: white;

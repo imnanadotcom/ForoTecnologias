@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import apiRoutes from "./apiRoutes"; // Importa las rutas
+import apiRoutes from "./apiRoutes"; 
 
 const Login = () => {
     const [username, setUsername] = useState("");
@@ -13,16 +13,15 @@ const Login = () => {
     const handleLogin = async (e) => {
         e.preventDefault();
 
-        // Validar que los campos no estén vacíos
+        
         if (!username || !password) {
             setError("Por favor, ingresa usuario y contraseña.");
             return;
         }
 
         try {
-            setError(""); // Limpiar errores previos
-
-            // Realizamos la solicitud POST a la API de login
+            setError(""); 
+           
             const response = await axios.post(apiRoutes.login, {
                 username,
                 password,
@@ -32,17 +31,17 @@ const Login = () => {
                 },
             });
 
-            // Si la respuesta es exitosa, redirigimos al usuario a la página principal
+            
             if (response.status === 200) {
-                const token = response.data.token; // Este es el token recibido desde la API
+                const token = response.data.token; 
 
                 localStorage.setItem('authToken', token);
                 console.log(token)
-                setError(""); // Limpiar cualquier error previo
-                navigate("/principal"); // Redirigir a la página principal
+                setError(""); 
+                navigate("/principal"); 
             }
         } catch (err) {
-            // Mostrar error si algo sale mal
+            
             setError(err.response?.data?.message || "Nombre de usuario o contraseña incorrectos");
         }
     };

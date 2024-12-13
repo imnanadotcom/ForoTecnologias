@@ -4,7 +4,7 @@ import "./AddPostButton.css";
 
 const AddPostButton = ({ onAddPost }) => {
     const [showPopup, setShowPopup] = useState(false);
-    const [newPost, setNewPost] = useState({ title: "", content: "" }); // Cambiado "text" por "content"
+    const [newPost, setNewPost] = useState({ title: "", content: "" }); 
 
     const togglePopup = () => setShowPopup(!showPopup);
 
@@ -14,9 +14,9 @@ const AddPostButton = ({ onAddPost }) => {
     };
 
     const handleAddPost = () => {
-        if (newPost.title && newPost.content) { // Cambiado "text" por "content"
+        if (newPost.title && newPost.content) { 
             onAddPost(newPost); // Pasar el nuevo post al componente padre
-            setNewPost({ title: "", content: "" }); // Reiniciar los campos
+            setNewPost({ title: "", content: "" }); 
             togglePopup();
         } else {
             alert("Por favor completa ambos campos");

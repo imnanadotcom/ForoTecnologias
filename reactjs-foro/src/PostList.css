@@ -1,27 +1,27 @@
-/* Post.css */
+
 .post {
     background-color: #fff;
     border: 1px solid #ddd;
     border-radius: 8px;
-    margin-bottom: 20px;  /* Añadir espacio entre los posts */
-    padding: 15px;        /* Añadir espacio dentro de cada post */
+    margin-bottom: 20px;  
+    padding: 15px;        
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    max-width: 800px;     /* Limitar el ancho de los posts */
+    max-width: 800px;     
     margin-left: auto;
-    margin-right: auto;   /* Centrar los posts en la página */
+    margin-right: auto;  
 }
 
 h3 {
     font-size: 1.5em;
     color: #333;
-    margin-bottom: 10px;  /* Espacio debajo del título */
+    margin-bottom: 10px;  
 }
 
 p {
     font-size: 1em;
     line-height: 1.5;
     color: #555;
-    margin-bottom: 15px;  /* Espacio debajo del contenido */
+    margin-bottom: 15px;  
 }
 
 .post-info {
